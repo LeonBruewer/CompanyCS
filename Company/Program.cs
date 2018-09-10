@@ -12,8 +12,10 @@ namespace Company
     {
         static SqlConnection con = new SqlConnection("Data Source=tappqa;Initial Catalog=Training-LR-Company;Integrated Security=True");
         static SqlCommand cmd = new SqlCommand();
-        static SqlDataReader reader;
-        static SqlDataAdapter adapter;
+
+        static DataSet employeeData = new DataSet("viEmployee");
+        static DataTableReader reader;
+        static Employee employee = new Employee();        
 
         static void Main(string[] args)
         {
@@ -24,10 +26,7 @@ namespace Company
 
         static void PrintEmployees()
         {
-            cmd.Connection = con;
-            con.Open();
-            cmd.CommandText = "SELECT * FROM dbo.viEmployee";
-            reader = cmd.ExecuteReader();
+            reader = employee.GetEmployee().CreateDataReader();
 
             while (reader.Read())
             {
@@ -40,7 +39,7 @@ namespace Company
 
                 Console.WriteLine($"First Name: {firstName} \nLast Name: {name} \nGender: {gender} \nPhone: {phone} \nCity: {city} \nStreet: {street}");
             }
-            con.Close();
+            
         }
 
         static void AddOrUpdateCity()
