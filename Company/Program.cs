@@ -18,7 +18,7 @@ namespace Company
         static void Main(string[] args)
         {
             PrintEmployees();
-            AddOrUpdateCity();
+            AddOrUpdateEmployee();
             Console.ReadLine();
         }
 
@@ -40,6 +40,7 @@ namespace Company
 
                 Console.WriteLine($"First Name: {firstName} \nLast Name: {name} \nGender: {gender} \nPhone: {phone} \nCity: {city} \nStreet: {street}");
             }
+            con.Close();
         }
 
         static void AddOrUpdateCity()
@@ -56,6 +57,44 @@ namespace Company
             cmd.Parameters.Add(new SqlParameter("@PostalCode", "48720"));
             cmd.Parameters.Add(new SqlParameter("@City", City));
             cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        static void AddOrUpdateEmployee()
+        {
+            Console.WriteLine("enter id or press enter");
+            string Id = Console.ReadLine();
+            Console.WriteLine("enter firtst name or press enter");
+            string FirstName = Console.ReadLine();
+            Console.WriteLine("enter last name or press enter");
+            string LastName = Console.ReadLine();
+            Console.WriteLine("enter date of birth or press enter");
+            string BirthDate = Console.ReadLine();
+            Console.WriteLine("enter Gender (1 = male, 2 = female) or press enter");
+            string Gender = Console.ReadLine();
+            Console.WriteLine("enter phonenumber or press enter");
+            string PhoneNumber = Console.ReadLine();
+            Console.WriteLine("enter departmentId or press enter");
+            string DepartmentId = Console.ReadLine();
+            Console.WriteLine("enter AddressId or press enter");
+            string AddressId = Console.ReadLine();
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "dbo.spAddOrUpdateEmployee";
+
+            cmd.Parameters.Add(new SqlParameter("@Id", Id));
+            cmd.Parameters.Add(new SqlParameter("@FirstName", FirstName));
+            cmd.Parameters.Add(new SqlParameter("@LastName", LastName));
+            cmd.Parameters.Add(new SqlParameter("@BirthDate", BirthDate));
+            cmd.Parameters.Add(new SqlParameter("@Gender", Gender));
+            cmd.Parameters.Add(new SqlParameter("@PhoneNumber", PhoneNumber));
+            cmd.Parameters.Add(new SqlParameter("@DepartmentId", DepartmentId));
+            cmd.Parameters.Add(new SqlParameter("@AddressId", AddressId));
+
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }
