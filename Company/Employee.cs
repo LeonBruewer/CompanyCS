@@ -33,6 +33,12 @@ namespace Company
 
         public void AddOrUpdate(string[] param)
         {
+            for (int i = 0; i < param.Length; i++)
+            {
+                if (param[i] == "")
+                    param[i] = null;
+            }
+
             string Id = param[0];
             string FirstName = param[1];
             string LastName = param[2];
