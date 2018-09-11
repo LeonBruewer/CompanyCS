@@ -15,7 +15,8 @@ namespace Company
 
         static DataSet employeeData = new DataSet("viEmployee");
         static DataTableReader reader;
-        static Employee employee = new Employee();        
+        static Employee employee = new Employee();
+        static City city = new City();
 
         static void Main(string[] args)
         {
@@ -37,26 +38,20 @@ namespace Company
                 string city = reader["City"].ToString();
                 string street = reader["Street"].ToString();
 
-                Console.WriteLine($"First Name: {firstName} \nLast Name: {name} \nGender: {gender} \nPhone: {phone} \nCity: {city} \nStreet: {street}");
+                Console.WriteLine($"First Name: {firstName} \nLast Name: {name} \nGender: {gender} \nPhone: {phone} \nCity: {city} \nStreet: {street}\n");
             }
             
         }
 
         static void AddOrUpdateCity()
         {
+            string[] param = new string[2];
             Console.WriteLine("enter postal code");
-            string PostalCode = Console.ReadLine();
+            param[0] = Console.ReadLine();
             Console.WriteLine("enter city");
-            string City = Console.ReadLine();
+            param[1] = Console.ReadLine();
 
-            cmd.Connection = con;
-            con.Open();
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "dbo.spAddOrUpdateCity";
-            cmd.Parameters.Add(new SqlParameter("@PostalCode", PostalCode));
-            cmd.Parameters.Add(new SqlParameter("@City", City));
-            cmd.ExecuteNonQuery();
-            con.Close();
+            city.AddOrUpdate(param);
         }
 
         static void AddOrUpdateEmployee()
@@ -80,12 +75,6 @@ namespace Company
             Console.WriteLine("enter AddressId or press enter");
             param[7] = Console.ReadLine();
 
-            for (int i = 0; i < param.Length; i++)
-            {
-                if (param[i] == "")
-                    param[i] = null;
-                Console.WriteLine(param[i]);
-            }
             employee.AddOrUpdate(param);
         }
     }
