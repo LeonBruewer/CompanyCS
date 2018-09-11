@@ -8,5 +8,9 @@ namespace Company.Model
 {
     class CompanyModel
     {
+        public string CompanyName { get; set; }
+        public int PostalCode { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
     }
 }

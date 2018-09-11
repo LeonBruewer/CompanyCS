@@ -25,7 +25,6 @@ namespace Company
             adapter.Fill(employeeData);
             reader = employeeData.CreateDataReader();
 
-            
             con.Close();
 
             return employeeData;
