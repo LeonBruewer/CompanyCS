@@ -25,13 +25,13 @@ namespace Company.Repository
             {
                 EmployeeModel model = new EmployeeModel()
                 {
-                    FirstName = row[1].ToString(),
-                    LastName = row[2].ToString(),
-                    BirthDate = (DateTime)row[3],
-                    Gender = row[4].ToString(),
-                    PhoneNumber = row[5].ToString(),
-                    City = row[6].ToString(),
-                    Street  = row[7].ToString()
+                    FirstName = row[0].ToString(),
+                    LastName = row[1].ToString(),
+                    BirthDate = Convert.ToDateTime(row[2]),
+                    Gender = row[3].ToString(),
+                    PhoneNumber = row[4].ToString(),
+                    City = row[5].ToString(),
+                    Street  = row[6].ToString()
                 };
 
                 result.Add(model);
