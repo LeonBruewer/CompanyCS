@@ -8,8 +8,8 @@ namespace Company.Model
 {
     class DepartmentModel
     {
-        public int DepartmentName { get; set; }
-        public int Manager { get; set; }
+        public string DepartmentName { get; set; }
+        public string Manager { get; set; }
         public string Company { get; set; }
     }
 }
