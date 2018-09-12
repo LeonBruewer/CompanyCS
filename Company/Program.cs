@@ -20,7 +20,8 @@ namespace Company
 
         static void Main(string[] args)
         {
-            PrintEmployees();
+            //PrintEmployees();
+            new Controller.PrintTablesController("employee");
             AddOrUpdateEmployee();
             Console.ReadLine();
         }
