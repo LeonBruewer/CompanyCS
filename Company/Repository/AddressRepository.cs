@@ -12,7 +12,7 @@ namespace Company.Repository
     class AddressRepository
     {
         SqlConnection con = new SqlConnection("Data Source=tappqa;Initial Catalog=Training-LR-Company;Integrated Security=True");
-        public List<AddressModel> GetAddress()
+        public List<AddressModel> GetModelList()
         {
             List<AddressModel> result = new List<AddressModel>();
 
@@ -21,16 +21,15 @@ namespace Company.Repository
 
             adapter.Fill(table);
 
-            foreach (string row in table.Rows)
+            foreach (DataRow row in table.Rows)
             {
-                AddressModel model;
-                
-                    model = new AddressModel()
-                    {
-                        PostalCode = (int)row[0],
-                        City = row[0].ToString(),
-                        Street = row[0].ToString()
-                    };
+                AddressModel model = new AddressModel()
+                {
+                    PostalCode = (int)row[1],
+                    City = row[2].ToString(),
+                    Street = row[3].ToString()
+                };
+
                 result.Add(model);
             }
 
