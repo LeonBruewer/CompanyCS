@@ -11,7 +11,7 @@ namespace Company.Repository
 {
     class AddressRepository
     {
-        SqlConnection con = new SqlConnection("Data Source=tappqa;Initial Catalog=Training-LR-Company;Integrated Security=True");
+        SqlConnection con = new SqlConnection(global::Company.Properties.Resources.tappqaConString);
         public List<AddressModel> GetModelList()
         {
             List<AddressModel> result = new List<AddressModel>();
